@@ -21,7 +21,7 @@
             <input type="text" class="form-control" name="titulo" placeholder="titulo de la pelicula">
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" name="id" placeholder="id de usuario">
+            <input type="text" class="form-control" name="id" placeholder="image code">
           </div>
           <button class="btn btn-primary btn-block" type="submit" value="Generar Usuario y Mascota">
             BUSCAR
@@ -32,44 +32,43 @@
        <div class=" p-2 " style="width: 18rem">
          <div class="card text-white border-success ">
              {% if datos %}
-                 <div class="card-header text-secondary">datos aleatorios</div>
+                 <div class="card-header text-secondary">formulario</div>
                     <div class="card-body pm20">
 
                                  <label class="input-group-prepend">
                                 <span class="input-group-text">
-                                    <i class="fas fa-user">Nombre</i>
+                                    <i class="fas fa-user">Nombre:  </i>
                                 </span>
                                   <img class="card-img-top" src="{{ datos.imagen }}" alt="Card image cap">
                             <label class="input-group-text"> {{ datos.nombre }}</label>
                          </label>
                          <label class="input-group-prepend">
                                 <span class="input-group-text">
-                                    <i class="fas fa-user">apellido</i>
+                                    <i class="fas fa-user">apellido:  </i>
                                 </span>
                             <label class="input-group-text">{{ datos.apellido }}</label>
                          </label>
                          <label class="input-group-prepend">
                                 <span class="input-group-text">
-                                    <i class="fas fa-user">ciudad</i>
+                                    <i class="fas fa-user">ciudad:  </i>
                                 </span>
                             <label class="input-group-text"> {{ datos.ciudad }}</label>
                          </label>
                          <label class="input-group-prepend">
                                 <span class="input-group-text">
-                                    <i class="fas fa-user">correo</i>
+                                    <i class="fas fa-user">correo:  </i>
                                 </span>
                             <label class="input-group-text"> {{ datos.correo }}</label>
                          </label>
                          <label class="input-group-prepend">
                                 <span class="input-group-text">
-                                    <i class="fas fa-user">resumen</i>
+                                    <i class="fas fa-user">resumen:  </i>
                                 </span>
-                            <label class="input-group-text"><a target="_blank"
-                                                               > {{ datos.resumen }}</a></label>
+                            <label class="input-group-text"><a target="_blank"> {{ datos.resumen }}</a></label>
                          </label>
                          <label class="input-group-prepend">
                                 <span class="input-group-text">
-                                    <i class="fas fa-user">poster de la pelicula</i>
+                                    <i class="fas fa-user">poster de la pelicula </i>
                                 </span>
                             <label class="input-group-text"><a target="_blank"
                                                                href="{{ datos.poster }}"> poster </a></label>
