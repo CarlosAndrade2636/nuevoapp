@@ -24,21 +24,22 @@
             <input type="text" class="form-control" name="id" placeholder="id de usuario">
           </div>
           <button class="btn btn-primary btn-block" type="submit" value="Generar Usuario y Mascota">
-            Save 
+            BUSCAR
           </button>
         </form>
 
       </div>
-       <div class=" p-2 " style="width: 40%;">
+       <div class=" p-2 " style="width: 18rem">
          <div class="card text-white border-success ">
              {% if datos %}
                  <div class="card-header text-secondary">datos aleatorios</div>
-                          <div class="card-body pm20">
+                    <div class="card-body pm20">
 
-                             <label class="input-group-prepend">
+                                 <label class="input-group-prepend">
                                 <span class="input-group-text">
                                     <i class="fas fa-user">Nombre</i>
                                 </span>
+                                  <img class="card-img-top" src="{{ datos.imagen }}" alt="Card image cap">
                             <label class="input-group-text"> {{ datos.nombre }}</label>
                          </label>
                          <label class="input-group-prepend">
@@ -68,17 +69,13 @@
                          </label>
                          <label class="input-group-prepend">
                                 <span class="input-group-text">
-                                    <i class="fas fa-user">poster</i>
+                                    <i class="fas fa-user">poster de la pelicula</i>
                                 </span>
                             <label class="input-group-text"><a target="_blank"
-                                                               href="{{ datos.poster }}"> {{ datos.poster }}</a></label>
+                                                               href="{{ datos.poster }}"> poster </a></label>
                          </label>
                          <img src="{{ datos.poster }}" alt="poster" class="img-fluid" width="100%" height="100%">
-                         <img src="https://avatars.dicebear.com/4.5/api/male/carlos.svg?background=%230000ff" alt="poster" class="img-fluid" width="100%" height="100%">
-
-
-
-                     </div>
+                    </div>
                 </div>
              {% endif %}
     </div>
