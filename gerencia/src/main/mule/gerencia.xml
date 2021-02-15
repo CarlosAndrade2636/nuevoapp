@@ -16,6 +16,9 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 	<http:request-config name="HTTP_Request_configuration2" doc:name="HTTP Request configuration" doc:id="c5571d6c-3137-47e0-9196-66e27892fb05">
 		<http:request-connection host="www.omdbapi.com" />
 	</http:request-config>
+	<http:request-config name="robot" doc:name="HTTP Request configuration" doc:id="a6e475e5-4007-44b1-b4db-6c34dfdd60ad" >
+		<http:request-connection host="robohash.org" />
+	</http:request-config>
 	<flow name="gerenciaFlow" doc:id="f31c0000-dc57-4064-bbd6-272322698ce8" >
 		<http:listener doc:name="Listener" doc:id="358a4ab0-b8fe-4457-96a1-abe9947ffa09" config-ref="HTTP_Listener_config" path="/"/>
 		<http:request method="GET" doc:name="Request" doc:id="5e6a4229-b287-4a46-8246-71c39372c253" config-ref="ConeccionLocal" path="/get_datos"/>
@@ -23,7 +26,7 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 		<set-variable value="#[payload.id]" doc:name="id" doc:id="cfea99c0-a87d-40c8-ac31-778bb7c9d56f" variableName="id"/>
 		<flow-ref doc:name="Flow Reference" doc:id="b241fdda-1ee1-4213-bdaf-bcb998b44404" name="datos"/>
 		<flow-ref doc:name="Flow Reference" doc:id="c1affbf7-a962-46ed-988f-196d51fd6e4d" name="pelicula"/>
-		<logger level="INFO" doc:name="Logger" doc:id="6ee19807-f640-446d-b98a-d516c4dc05a8" message='#[vars.name] ++"  "++#[vars.titulo]++"  "++#[vars.resumen]'/>
+		<logger level="INFO" doc:name="Logger" doc:id="6ee19807-f640-446d-b98a-d516c4dc05a8" message='#[vars.nombre] ++"  "++#[vars.correo] ++"  "++#[vars.titulo]++"  "++#[vars.resumen]'/>
 		<set-payload value='#[{&#10;"nombre":vars.nombre, &#10; "apellido":vars.apellido,&#10; "ciudad": vars.ciudad,&#10; "correo": vars.correo,&#10; "poster": vars.poster,&#10; "resumen": vars.resumen&#10;	&#10;}]' doc:name="Set Payload" doc:id="42fcfa3d-e100-4c48-a228-f36e7213b5ed" />
 	</flow>
 	<flow name="datos" doc:id="94bb3c10-e0d5-4ec0-b88a-7b0bb47480b8" >
@@ -31,7 +34,7 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 		<set-variable value="#[payload.person.personal.name]" doc:name="nombre" doc:id="c2b56ad6-5768-4958-960c-3f37dabc2868" variableName="nombre"/>
 		<set-variable value="#[payload.person.personal.last_name]" doc:name="apellido" doc:id="085028b5-4902-4677-a75c-67bedb38cbf8" variableName="apellido"/>
 		<set-variable value="#[payload.person.personal.city]" doc:name="ciudad" doc:id="3650ffdc-5b5d-47c6-b59b-2fcc869c60af" variableName="ciudad"/>
-		<set-variable value="#[payload.online_info.personal.email]" doc:name="correo" doc:id="ac3e8822-130c-4f8d-8b8a-c55ecb5d21ce" variableName="correo"/>
+		<set-variable value="#[payload.person.online_info.email]" doc:name="correo" doc:id="ac3e8822-130c-4f8d-8b8a-c55ecb5d21ce" variableName="correo"/>
 	</flow>
 	<flow name="pelicula" doc:id="08b83388-15fc-4014-bee6-6943f76c38c1" >
 		<http:request method="GET" doc:name="Request" doc:id="18e5d759-2dcf-4a07-8457-a045cf764a22" config-ref="HTTP_Request_configuration2" path="/?t={titulo}&amp;apikey=dce782f8" sendCorrelationId="AUTO">
@@ -43,5 +46,9 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 		</http:request>
 		<set-variable value="#[payload.Poster]" doc:name="poster" doc:id="6b52aad4-8642-4a77-855c-d675b057a5ef" variableName="poster" />
 		<set-variable value="#[payload.Plot]" doc:name="resumen" doc:id="bf0026c7-6bb3-4cce-8f39-9debe258da7a" variableName="resumen" />
+	</flow>
+	<flow name="gerenciaFlow1" doc:id="5165baf0-8815-4004-9d5f-5d886ba10f62" >
+		<http:request method="GET" doc:name="Request" doc:id="90c7997d-1d16-40cc-b8d5-e48064ed79bf" config-ref="robot" path="/{robot}"/>
+		<set-variable value="#[payload.robot]" doc:name="robot" doc:id="25e3ae7b-a3a0-4b74-81bf-e34cf5390f86" variableName="robot"/>
 	</flow>
 </mule>
