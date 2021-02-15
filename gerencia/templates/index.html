@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+{% block body %}
+
+  <div class="row">
+    <div class="col-md-5">
+      {% with messages = get_flashed_messages()  %}
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+      <div class="card card-body">
+        <form action="/sendDatos" method="POST">
+          <div class="form-group">
+            <input type="text" class="form-control" name="titulo" placeholder="titulo de la pelicula">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="id" placeholder="id de usuario">
+          </div>
+          <button class="btn btn-primary btn-block" type="submit" value="Generar Usuario y Mascota">
+            Save 
+          </button>
+        </form>
+
+      </div>
+       <div class=" p-2 " style="width: 40%;">
+         <div class="card text-white border-success ">
+             {% if datos %}
+                 <div class="card-header text-secondary">Datos Sugeridos del Sistema</div>
+                          <div class="card-body pm20">
+
+                             <label class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-user">Nombre</i>
+                                </span>
+                            <label class="input-group-text"> {{ datos.nombre }}</label>
+                         </label>
+                         <label class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-user">apellido</i>
+                                </span>
+                            <label class="input-group-text">{{ datos.apellido }}</label>
+                         </label>
+                         <label class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-user">ciudad</i>
+                                </span>
+                            <label class="input-group-text"> {{ datos.ciudad }}</label>
+                         </label>
+                         <label class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-user">correo</i>
+                                </span>
+                            <label class="input-group-text"> {{ datos.coreo }}</label>
+                         </label>
+                         <label class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-user">resumen</i>
+                                </span>
+                            <label class="input-group-text"><a target="_blank"
+                                                               href="http://www.{{ datos.pagina }}"> {{ datos.resumen }}</a></label>
+                         </label>
+                         <label class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-user">poster</i>
+                                </span>
+                            <label class="input-group-text"><a target="_blank"
+                                                               href="http://www.{{ datos.pagina }}"> {{ datos.poster }}</a></label>
+                         </label>
+                         <img src="{{ datos.imagen }}" alt="Perro" class="img-fluid" width="100%" height="100%">
+
+
+
+                     </div>
+                </div>
+             {% endif %}
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
